@@ -5,14 +5,20 @@
 ## 项目结构
 
 ```text
-src/main/java/
-├── dawn/algorithm/        ← 左程云算法课程代码
-│   ├── class001/          ← 按课程编号组织
-│   │   └── Code01_XXX.java
-│   └── class004/
-│       └── SelectBubbleInsert.java
-└── leetcode/              ← LeetCode 刷题记录
-    └── P0912.java         ← LeetCode 题号命名
+src/
+├── leetcode/              ← LeetCode 刷题记录
+│   ├── common/            ← 公共数据结构 (ListNode, TreeNode)
+│   ├── P0001_TwoSum.java
+│   ├── P0704_BinarySearch.java
+│   └── 题目格式.md
+└── main/
+    ├── java/
+    │   └── dawn/algorithm/        ← 左程云算法课程代码
+    │       ├── class003/          ← 按课程编号组织
+    │       │   └── BinarySystem.java
+    │       └── class004/
+    │           └── SelectBubbleInsert.java
+    └── resources/
 ```
 
 ## LeetCode 练习
@@ -32,7 +38,7 @@ src/main/java/
 | 课程包名 | `classXXX` | `class001`, `class023` |
 | 课程类名 | `题目简称`或`CodeXX_题目简称` | `SelectBubbleInsert.java` |
 | 刷题包名 | `leetcode` | `leetcode` |
-| 刷题类名 | `P` + 4位数字题号 | `P0912.java`, `P0001.java` |
+| 刷题类名 | `P` + 4位数字题号 + `_` + `题目英文` | `P0001_TwoSum.java`, `P0912.java` |
 
 ## 配套博客
 
