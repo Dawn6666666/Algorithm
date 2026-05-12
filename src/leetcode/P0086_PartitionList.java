@@ -56,26 +56,41 @@ public class P0086_PartitionList {
     //leetcode submit region begin(Prohibit modification and deletion)
     static class Solution {
         public ListNode partition(ListNode head, int x) {
-            ListNode leftDummy = new ListNode(0);
-            ListNode rightDummy = new ListNode(0);
-            ListNode leftTail = leftDummy;
-            ListNode rightTail = rightDummy;
+            ListNode lefthead = null;
+            ListNode lefttail = null;
+            ListNode righthead = null;
+            ListNode righttail = null;
 
             while (head != null) {
                 ListNode next = head.next;
                 head.next = null;
                 if (head.val < x) {
-                    leftTail.next = head;
-                    leftTail = head;
-                } else {
-                    rightTail.next = head;
-                    rightTail = head;
+                    if (lefthead == null) {
+                        lefthead = head;
+                        lefttail = head;
+                    }
+                    else {
+                        lefttail.next = head;
+                        lefttail = head;
+                    }
                 }
-                head = next;
+                else {
+                    if (righthead == null) {
+                        righthead = head;
+                        righttail = head;
+                    }
+                    else {
+                        righttail.next = head;
+                        righttail = head;
+                    }
+                }
             }
+            if (lefthead == null) {
+                return righthead;
+            }
+            lefttail.next = righthead;
+            return lefthead;
 
-            leftTail.next = rightDummy.next;
-            return leftDummy.next;
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
