@@ -1,7 +1,6 @@
 package leetcode;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
+import java.util.Stack;
 
 /**
  * <p>使用两个栈实现队列，支持 push、pop、peek 和 empty。</p>
@@ -23,38 +22,34 @@ public class P0232_ImplementQueueUsingStacks {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     static class MyQueue {
-        private final Deque<Integer> inStack;
-        private final Deque<Integer> outStack;
+        Stack<Integer> in = new Stack<>();
+        Stack<Integer> out = new Stack<>();
 
-        public MyQueue() {
-            inStack = new ArrayDeque<>();
-            outStack = new ArrayDeque<>();
-        }
-
-        public void push(int x) {
-            inStack.push(x);
-        }
-
-        public int pop() {
-            moveIfNeeded();
-            return outStack.pop();
-        }
-
-        public int peek() {
-            moveIfNeeded();
-            return outStack.peek();
-        }
-
-        public boolean empty() {
-            return inStack.isEmpty() && outStack.isEmpty();
-        }
-
-        private void moveIfNeeded() {
-            if (outStack.isEmpty()) {
-                while (!inStack.isEmpty()) {
-                    outStack.push(inStack.pop());
+        void inToOut() {
+            if (out.empty()) {
+                while (!in.empty()) {
+                    out.push(in.pop());
                 }
             }
+        }
+
+        void push(int x) {
+            in.push(x);
+            inToOut();
+        }
+
+        int pop() {
+            inToOut();
+            return out.pop();
+        }
+
+        int peek() {
+            inToOut();
+            return out.peek();
+        }
+
+        boolean empty() {
+            return in.empty() && out.empty();
         }
     }
     //leetcode submit region end(Prohibit modification and deletion)
